@@ -13,7 +13,7 @@ int main(){
     s.pop();
     cout << "Top element is " << s.top() << endl;
     cout << "Size of stack is " << s.size() << endl;
-
+ 
     if(s.empty()){
         cout << "Stack is empty" << endl;
     }

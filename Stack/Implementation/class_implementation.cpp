@@ -18,7 +18,7 @@ class Stack{
             top++;
             arr[top] = element;
         }
-        else{
+        else{ 
             cout << "Stack Overflow" << endl;
         }
     }
