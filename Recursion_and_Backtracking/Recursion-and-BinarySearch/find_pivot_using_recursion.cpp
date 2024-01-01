@@ -24,5 +24,5 @@ int main(){
     int pivot = getPivot(arr, 0, n-1);
     cout << pivot << endl;
 
-    return 0;
+    return 0; 
 }
