@@ -36,7 +36,10 @@ int numIslands(vector<vector<char>>& grid) {
 }
 
 int main(){
-    vector<vector<char>> grid = {{'0','1','1','1','0','0','0'}, {'0','0','1','1','0','1','0'}};
+    vector<vector<char>> grid = {
+        {'0','1','1','1','0','0','0'}, 
+        {'0','0','1','1','0','1','0'}
+    };
     int ans = numIslands(grid);
     cout << "Number of islands: " << ans << endl;
     
