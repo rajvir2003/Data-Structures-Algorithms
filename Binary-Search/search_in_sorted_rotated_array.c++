@@ -1,61 +1,40 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int BinarySearch(int arr[], int start, int end, int key) {
+int search(vector<int> &nums, int target) {
+    int low = 0, high = nums.size()-1;
 
-    while (start <= end)
-    {
-        int mid = start + (end - start) / 2;
-
-        if(arr[mid] == key) {
-            return mid;
-        }
-        else if(arr[mid] < key) {
-            start = mid + 1;
-        }
-        else{
-            end = mid - 1;
+    while(low <= high) {
+        int mid = (low + high) / 2;
+        if(nums[mid] == target) return mid;
+        else if(nums[low] <= nums[mid]) { // if left half is sorted
+            if(target >= nums[low] && target < nums[mid]) {
+                high = mid-1;  // if target lies b/w low - mid, then eleminate right half
+            } else {
+                low = mid+1;  // else eleminate left half
+            }
+        } else { // if right half is sorted
+            if(target > nums[mid] && target <= nums[high]) {
+                low = mid+1;  // if target lies b/w mid - high, then eleminate left half
+            } else {
+                high = mid-1;  // else eleminate right half
+            }
         }
     }
+    // return -1 if target not found
     return -1;
 }
 
-int getPivot(int arr[], int n) {
-    int start = 0;
-    int end = n-1;
-
-    while (start < end)
-    {
-        int mid = start + (end - start) / 2;
-
-        if(arr[mid] >= arr[0]){
-            start = mid + 1;
-        }
-        else{
-            end = mid;
-        }
-    }
-    return start;
-}
-
-int search(int arr[], int n, int key) {
-    int pivot = getPivot(arr,n);
-
-    if(arr[pivot] <= key && arr[n-1] >= key) {
-        BinarySearch(arr,pivot,n-1,key);
-    }
-    else{
-        BinarySearch(arr,0,pivot-1,key);
-    }
-}
-
 int main(){
-    int A[] = {6,8,9,12,15,20,24,0,1,3,4,5};
-    int n = sizeof(A) / sizeof(int);
-    int key = 1;
+    vector<int> nums = {7,8,9,1,2,3,4,5,6};
+    int target = 8;
+    int idx = search(nums, target);
 
-    int ans = search(A,n,key);
-    cout << "Key is found at index " << ans << endl;
+    if(idx != -1) {
+        cout << "Target found at index: " << idx << endl;
+    } else {
+        cout << "Target not found" << endl;
+    }
 
     return 0;
 }
